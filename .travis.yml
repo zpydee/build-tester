@@ -19,3 +19,4 @@ script:
 
 after_success:
   - '[ "$TRAVIS_PULL_REQUEST" = "false" ] && [ "$TRAVIS_BRANCH" = "master" ] &&  curl --data build=true -X POST $DOCKER_BUILD_URL'
+  
