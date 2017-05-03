@@ -18,4 +18,4 @@ script:
   - npm run test;
 
 after_success:
-  - curl --data build=true -X POST $DOCKER_BUILD_URL
+  - '[ "$TRAVIS_PULL_REQUEST" = "false" ] && [ "$TRAVIS_BRANCH" = "master" ] &&  curl --data build=true -X POST $DOCKER_BUILD_URL'
