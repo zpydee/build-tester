@@ -18,9 +18,9 @@ script:
   - npm run test;
 
 after_success:
-  # - if [ "$TRAVIS_BRANCH" == "master" ]; then
-  curl -H "Content-Type: application/json" --data '{"docker_tag": "master"}' -X POST https://registry.hub.docker.com/u/zpydee/build-tester/trigger/e01d5259-aafa-4ac2-a48e-dd950389ce36/
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    curl --data build=true -X POST $DOCKER_BUILD_URL'  
 #    docker build -t irdt/cerebro .;
 #    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
 #    docker push irdt/cerebro;
-  #  fi
+   fi
