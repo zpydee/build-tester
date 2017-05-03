@@ -17,7 +17,8 @@ install:
 script:
   - npm run test;
 
-# after_success:
+after_success:
+  - $DOCKER_BUILD_TRIGGER
 #   - if [ "$TRAVIS_BRANCH" == "master" ]; then
 #    docker build -t irdt/cerebro .;
 #    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
