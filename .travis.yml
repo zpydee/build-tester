@@ -18,7 +18,7 @@ script:
   - npm run test;
 
 after_success:
-  - $DOCKER_BUILD_TRIGGER
+  - curl -H "Content-Type: application/json" --data '{"docker_tag": "master"}' -X POST $DOCKER_BUILD_URL
 #   - if [ "$TRAVIS_BRANCH" == "master" ]; then
 #    docker build -t irdt/cerebro .;
 #    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
