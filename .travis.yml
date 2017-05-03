@@ -18,7 +18,4 @@ script:
   - npm run test;
 
 after_success:
-  - curl --data build=true -X POST $DOCKER_BUILD_URL'  
-#    docker build -t irdt/cerebro .;
-#    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-#    docker push irdt/cerebro;
+  - curl --data build=true -X POST $DOCKER_BUILD_URL
