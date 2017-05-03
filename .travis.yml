@@ -15,7 +15,6 @@ install:
   - npm install;
 
 script:
-  - echo "$TRAVIS_TAG"
   - npm run test;
 
 after_success:
