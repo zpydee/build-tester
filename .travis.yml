@@ -1,0 +1,27 @@
+sudo: required
+
+language: node_js
+
+node_js:
+  - "7.8"
+
+branches:
+ only:
+   - master
+
+
+before_install:
+  - npm install -g mocha chai
+
+install:
+  - npm install;
+
+script:
+  - npm run test;
+
+# after_success:
+#   - if [ "$TRAVIS_BRANCH" == "master" ]; then
+#    docker build -t irdt/cerebro .;
+#    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+#    docker push irdt/cerebro;
+#    fi
