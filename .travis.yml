@@ -26,6 +26,6 @@ script:
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-   docker build -t zpydee/build-tester:"$TRAVIS_TAG" .;
-   docker push zpydee/build-tester:"$TRAVIS_TAG";
+   docker build -t zpydee/build-tester:$TRAVIS_TAG .;
+   docker push zpydee/build-tester:$TRAVIS_TAG;
    fi
