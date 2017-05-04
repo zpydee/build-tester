@@ -22,6 +22,7 @@ env:
 
 
 script:
+  - echo COMMIT_TAG
   - npm run test;
 
 after_script:
@@ -29,7 +30,6 @@ after_script:
   #   export BRANCH_TAG = "latest"; else
   #   export BRANCH_TAG = $TRAVIS_BRANCH;
   #   fi
-  - echo COMMIT_TAG
 
 
 # after_success:
