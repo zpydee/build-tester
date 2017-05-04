@@ -22,7 +22,8 @@ env:
 
 
 script:
-  - echo $COMMIT_TAG
+  - echo $TRAVIS_COMMIT
+  - echo ${TRAVIS_COMMIT::7}
   - npm run test;
 
 after_script:
