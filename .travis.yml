@@ -18,12 +18,11 @@ install:
   - npm install;
 
 env:
-  - COMMIT_TAG = $TRAVIS_COMMIT
+  - COMMIT_TAG=${TRAVIS_COMMIT::7}
 
 
 script:
-  - echo $TRAVIS_COMMIT
-  - echo ${TRAVIS_COMMIT::7}
+  - echo $COMMIT_TAG
   - npm run test;
 
 after_script:
