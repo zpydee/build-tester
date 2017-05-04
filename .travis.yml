@@ -18,7 +18,7 @@ install:
   - npm install;
 
 env:
-  - COMMIT_TAG = ${TRAVIS_COMMIT::7}
+  - COMMIT_TAG = $TRAVIS_COMMIT
 
 
 script:
