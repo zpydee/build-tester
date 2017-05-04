@@ -18,14 +18,15 @@ install:
   - npm install;
 
 script:
+  - echo $DOCKER_BUILD_URL
   - npm run test;
 
 # after_success:
 #   - '[ "$TRAVIS_PULL_REQUEST" = "false" ] && [ "$TRAVIS_BRANCH" = "master" ] &&  curl --data build=true docker_tag=$TRAVIS_TAG -X POST $DOCKER_BUILD_URL'
 
-after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-   docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-   docker build -t zpydee/build-tester:$TRAVIS_TAG .;
-   docker push zpydee/build-tester:$TRAVIS_TAG;
-   fi
+# after_success:
+#   - if [ "$TRAVIS_BRANCH" == "master" ]; then
+#    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+#    docker build -t zpydee/build-tester:$TRAVIS_TAG .;
+#    docker push zpydee/build-tester:$TRAVIS_TAG;
+#    fi
