@@ -23,13 +23,13 @@ env:
     - BRANCH_TAG="latest"
     # - BRANCH_TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
 
+before_script:
+  - echo $COMMIT_TAG
+  - echo $BRANCH_TAG
 
 script:
   - npm run test;
 
-after_script:
-  - echo $COMMIT_TAG
-  - echo $BRANCH_TAG
   # - if [ "$TRAVIS_BRANCH" == "master" ]; then
   #   export BRANCH_TAG = "latest"; else
   #   export BRANCH_TAG = $TRAVIS_BRANCH;
