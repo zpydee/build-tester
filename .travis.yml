@@ -20,6 +20,16 @@ install:
 script:
   - npm run test;
 
+after_script:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    export BRANCH_TAG = "latest"; else
+    export BRANCH_TAG = $TRAVIS_BRANCH;
+    fi
+  - export COMMIT_TAG = ${TRAVIS_COMMIT::7}
+  - echo BRANCH_TAG
+  - echo COMMIT_TAG
+
+
 # after_success:
 #   - '[ "$TRAVIS_PULL_REQUEST" = "false" ] && [ "$TRAVIS_BRANCH" = "master" ] &&  curl --data build=true docker_tag=$TRAVIS_TAG -X POST $DOCKER_BUILD_URL'
 
@@ -30,11 +40,4 @@ script:
 #    docker push zpydee/build-tester:$TRAVIS_TAG;
 #    fi
 
-after success:
-  # - if [ "$TRAVIS_BRANCH" == "master" ]; then
-  #   export BRANCH_TAG = "latest"; else
-  #   export BRANCH_TAG = $TRAVIS_BRANCH;
-  #   fi
-  - export COMMIT_TAG = ${TRAVIS_COMMIT::7}
-  # - echo BRANCH_TAG
-  - echo COMMIT_TAG
+# after success:
