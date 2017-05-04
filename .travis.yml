@@ -18,7 +18,7 @@ install:
   - npm install;
 
 script:
-  - export COMMIT_TAG = ${TRAVIS_COMMIT::7}
+  - export COMMIT_TAG = $TRAVIS_COMMIT
   - echo BRANCH_TAG
   - npm run test;
 
