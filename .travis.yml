@@ -22,7 +22,7 @@ env:
 
 
 script:
-  - echo COMMIT_TAG
+  - echo $COMMIT_TAG
   - npm run test;
 
 after_script:
