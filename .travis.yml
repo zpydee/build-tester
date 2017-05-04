@@ -24,8 +24,6 @@ env:
 
 
 script:
-  - echo $COMMIT_TAG
-  - echo $BRANCH_TAG
   - npm run test;
 
 after_script:
@@ -45,4 +43,6 @@ after_script:
 #    docker push zpydee/build-tester:$TRAVIS_TAG;
 #    fi
 
-# after success:
+after success:
+  - echo $COMMIT_TAG
+  - echo $BRANCH_TAG
