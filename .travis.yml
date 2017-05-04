@@ -20,13 +20,16 @@ install:
 env:
   global:
     - COMMIT_TAG=${TRAVIS_COMMIT::7}
-    - BRANCH_TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
+    - BRANCH_TAG="latest"
+    # - BRANCH_TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
 
 
 script:
   - npm run test;
 
 after_script:
+  - echo $COMMIT_TAG
+  - echo $BRANCH_TAG
   # - if [ "$TRAVIS_BRANCH" == "master" ]; then
   #   export BRANCH_TAG = "latest"; else
   #   export BRANCH_TAG = $TRAVIS_BRANCH;
@@ -44,5 +47,3 @@ after_script:
 #    fi
 
 after success:
-  - echo $COMMIT_TAG
-  - echo $BRANCH_TAG
