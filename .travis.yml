@@ -19,11 +19,7 @@ install:
 
 env:
   - COMMIT_TAG=${TRAVIS_COMMIT::7}
-  - BRANCH_TAG='if [  "$TRAVIS_BRANCH" == "master" ]; then
-  echo BRANCH_TAG="latest"; else
-  BRANCH_TAG=$TRAVIS_BRANCH;
-  fi
-  '
+  - BRANCH_TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
 
 
 script:
