@@ -3,13 +3,16 @@ language: node_js
 node_js:
   - "7.8"
 
-# services:
-#   - docker
+services:
+  - docker
 
 # branches:
 #  only:
 #    - master
 
+env:
+  global:
+    DOCKER_REPO=zpydee/build-tester
 
 before_install:
   - npm install -g mocha chai
@@ -18,15 +21,16 @@ install:
   - npm install;
 
 script:
-  - export VERSION_TAG=`echo $TRAVIS_TAG`
-  - export VERSION_COMMIT_TAG=`echo $TRAVIS_COMMIT_TAG`
+  - npm run test;
+
+after_success:
   - export COMMIT_TAG=`echo ${TRAVIS_COMMIT::7}`
   - export BRANCH_TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
-  - echo $VERSION_TAG
-  - echo $VERSION_COMMIT_TAG
-  - echo $COMMIT_TAG
-  - echo $BRANCH_TAG
-  - npm run test;
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker build -t $DOCKER_REPO:$COMMIT_TAG .
+  - docker tag $DOCKER_REPO:$COMMIT_TAG $DOCKER_REPO:$BRANCH_TAG
+  - docker push $DOCKER_REPO
+
 
   # - if [ "$TRAVIS_BRANCH" == "master" ]; then
   #   export BRANCH_TAG = "latest"; else
