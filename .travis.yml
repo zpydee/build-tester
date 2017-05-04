@@ -18,7 +18,7 @@ install:
   - npm install;
 
 script:
-  - echo $TRAVIS_TAG
+  - echo "Branch:" $TRAVIS_BRANCH
   - npm run test;
 
 # after_success:
