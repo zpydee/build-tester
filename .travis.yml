@@ -18,6 +18,8 @@ install:
   - npm install;
 
 script:
+  - export COMMIT_TAG = ${TRAVIS_COMMIT::7}
+  - echo BRANCH_TAG
   - npm run test;
 
 after_script:
@@ -25,8 +27,6 @@ after_script:
     export BRANCH_TAG = "latest"; else
     export BRANCH_TAG = $TRAVIS_BRANCH;
     fi
-  - export COMMIT_TAG = ${TRAVIS_COMMIT::7}
-  - echo BRANCH_TAG
   - echo COMMIT_TAG
 
 
