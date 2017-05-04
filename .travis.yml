@@ -18,8 +18,12 @@ install:
   - npm install;
 
 script:
+  - export VERSION_TAG=`echo $TRAVIS_TAG`
+  - export VERSION_COMMIT_TAG=`echo $TRAVIS_COMMIT_TAG`
   - export COMMIT_TAG=`echo ${TRAVIS_COMMIT::7}`
   - export BRANCH_TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
+  - echo $VERSION_TAG
+  - echo $VERSION_COMMIT_TAG
   - echo $COMMIT_TAG
   - echo $BRANCH_TAG
   - npm run test;
