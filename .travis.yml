@@ -17,16 +17,18 @@ before_install:
 install:
   - npm install;
 
+env:
+  COMMIT_TAG = ${TRAVIS_COMMIT::7}
+
+
 script:
-  - export COMMIT_TAG = $TRAVIS_COMMIT
-  - echo BRANCH_TAG
   - npm run test;
 
 after_script:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    export BRANCH_TAG = "latest"; else
-    export BRANCH_TAG = $TRAVIS_BRANCH;
-    fi
+  # - if [ "$TRAVIS_BRANCH" == "master" ]; then
+  #   export BRANCH_TAG = "latest"; else
+  #   export BRANCH_TAG = $TRAVIS_BRANCH;
+  #   fi
   - echo COMMIT_TAG
 
 
