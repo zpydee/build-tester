@@ -33,22 +33,3 @@ after_success:
     docker tag $DOCKER_REPO:$COMMIT_TAG $DOCKER_REPO:$BRANCH_TAG;
     docker push $DOCKER_REPO;
     fi
-
-
-  # - if [ "$TRAVIS_BRANCH" == "master" ]; then
-  #   export BRANCH_TAG = "latest"; else
-  #   export BRANCH_TAG = $TRAVIS_BRANCH;
-  #   fi
-
-
-# after_success:
-#   - '[ "$TRAVIS_PULL_REQUEST" = "false" ] && [ "$TRAVIS_BRANCH" = "master" ] &&  curl --data build=true docker_tag=$TRAVIS_TAG -X POST $DOCKER_BUILD_URL'
-
-# after_success:
-#   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-#    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-#    docker build -t zpydee/build-tester:$TRAVIS_TAG .;
-#    docker push zpydee/build-tester:$TRAVIS_TAG;
-#    fi
-
-after success:
