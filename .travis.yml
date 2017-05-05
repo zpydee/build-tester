@@ -24,7 +24,7 @@ script:
   - npm run test;
 
 after_success:
-  - if [ "$TRAVIS_PULL_REQUEST" == false]; then
+  - if [ "$TRAVIS_PULL_REQUEST" == false ]; then
     export BRANCH_TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`;
     export COMMIT_TAG=`echo $BRANCH_TAG-${TRAVIS_COMMIT::7}`;
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
