@@ -24,12 +24,14 @@ script:
   - npm run test;
 
 after_success:
-  - export BRANCH_TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
-  - export COMMIT_TAG=`echo $BRANCH_TAG-${TRAVIS_COMMIT::7}`
-  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker build -t $DOCKER_REPO:$COMMIT_TAG .
-  - docker tag $DOCKER_REPO:$COMMIT_TAG $DOCKER_REPO:$BRANCH_TAG
-  - docker push $DOCKER_REPO
+  - if [ "$TRAVIS_PULL_REQUEST" == false], then
+  export BRANCH_TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`;
+  export COMMIT_TAG=`echo $BRANCH_TAG-${TRAVIS_COMMIT::7}`;
+  docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+  docker build -t $DOCKER_REPO:$COMMIT_TAG .;
+  docker tag $DOCKER_REPO:$COMMIT_TAG $DOCKER_REPO:$BRANCH_TAG;
+  docker push $DOCKER_REPO;
+  fi
 
 
   # - if [ "$TRAVIS_BRANCH" == "master" ]; then
