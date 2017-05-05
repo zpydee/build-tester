@@ -9,7 +9,7 @@ services:
 branches:
  only:
    - master
-   - /^release-.*$/
+   - /^17\.-.*$/
 
 env:
   global:
